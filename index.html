@@ -178,17 +178,17 @@ footer {
 <section class="section fade" id="programas">
   <h2>📺 Programas</h2>
   <div class="cards">
-    <div class="card">TV Natal Manhã</div>
-    <div class="card">Programa KaikeFlex</div>
-    <div class="card">Natal Kids</div>
-    <div class="card">TVSéries</div>
-    <div class="card">Jornal do Natal</div>
-    <div class="card">Alô Potiguar</div>
-    <div class="card">Via Legal</div>
-    <div class="card">HistóriaTV</div>
-    <div class="card">Natal Esporte</div>
-    <div class="card">Educação em Revista</div>
-    <div class="card">A Terra Prometida</div>
+    <div class="card" onclick="abrirPrograma('TV Natal Manhã')">TV Natal Manhã</div>
+    <div class="card" onclick="abrirPrograma('Programa KaikeFlex')">Programa KaikeFlex</div>
+    <div class="card" onclick="abrirPrograma('Natal Kids')">Natal Kids</div>
+    <div class="card" onclick="abrirPrograma('TVSéries')">TVSéries</div>
+    <div class="card" onclick="abrirPrograma('Jornal do Natal')">Jornal do Natal</div>
+    <div class="card" onclick="abrirPrograma('Alô Potiguar')">Alô Potiguar</div>
+    <div class="card" onclick="abrirPrograma('Via Legal')">Via Legal</div>
+    <div class="card" onclick="abrirPrograma('HistóriaTV')">HistóriaTV</div>
+    <div class="card" onclick="abrirPrograma('Natal Esporte')">Natal Esporte</div>
+    <div class="card" onclick="abrirPrograma('Educação em Revista')">Educação em Revista</div>
+    <div class="card" onclick="abrirPrograma('A Terra Prometida')">A Terra Prometida</div>
   </div>
 </section>
 
@@ -199,7 +199,7 @@ footer {
 <script>
 // HLS PLAYER
 const video = document.getElementById('video');
-const videoSrc = "SEU_LINK_AQUI.m3u8";
+const videoSrc = "tvnatal-rn.m3u8";
 
 if(Hls.isSupported()) {
   const hls = new Hls();
