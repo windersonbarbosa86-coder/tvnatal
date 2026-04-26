@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TV Natal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #1a1f2e, #05070d);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 40px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+header h1 {
+  color: orange;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  position: relative;
+  transition: 0.3s;
+}
+
+nav a::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: orange;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),
+              url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding: 60px;
+}
+
+.hero h2 {
+  font-size: 60px;
+}
+
+.hero p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* BOTÃO PRO */
+.btn {
+  padding: 14px 30px;
+  background: linear-gradient(45deg, orange, red);
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px orange;
+}
+
+/* SEÇÕES */
+.section {
+  padding: 80px 40px;
+}
+
+/* PLAYER */
+.video-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* CARDS PROGRAMAS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #111522;
+  padding: 20px;
+  border-radius: 15px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(255,140,0,0.4);
+}
+
+/* ANIMAÇÃO */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  background: black;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>TV Natal</h1>
+  <nav>
+    <a href="#home">Início</a>
+    <a href="#ao-vivo">Ao Vivo</a>
+    <a href="#programas">Programas</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <h2>TV Natal</h2>
+    <p>A sua conexão com o Rio Grande do Norte</p>
+    <a href="#ao-vivo" class="btn">ASSISTA AO VIVO</a>
+  </div>
+</section>
+
+<section class="section fade" id="ao-vivo">
+  <h2>🔴 Ao Vivo</h2>
+  <div class="video-container">
+    <video id="video" controls autoplay></video>
+  </div>
+</section>
+
+<section class="section fade" id="programas">
+  <h2>📺 Programas</h2>
+  <div class="cards">
+    <div class="card">RN Notícias</div>
+    <div class="card">Natal Show</div>
+    <div class="card">Esporte Potiguar</div>
+    <div class="card">Cinema Potiguar</div>
+    <div class="card">Verão Natal</div>
+    <div class="card">Arena RN</div>
+  </div>
+</section>
+
+<footer>
+  © 2026 TV Natal
+</footer>
+
+<script>
+// HLS PLAYER
+const video = document.getElementById('video');
+const videoSrc = "SEU_LINK_AQUI.m3u8";
+
+if(Hls.isSupported()) {
+  const hls = new Hls();
+  hls.loadSource(videoSrc);
+  hls.attachMedia(video);
+}
+
+// ANIMAÇÃO AO SCROLL
+const faders = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+  faders.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100) {
+      el.classList.add('show');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
