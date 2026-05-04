@@ -1,224 +1,255 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>TV Natal</title>
-<link rel="icon" type="image/png" href="favicon-tvnatal.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-<style>
-
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #1a1f2e, #05070d);
-  color: white;
-  overflow-x: hidden;
+<title>TV Natal | Oficial</title>
+<link rel="icon" href="favicon-tvnatal.png"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script><style>
+:root{
+  --primary:#ff7a00;
+  --dark:#05070d;
+  --card:#111522;
 }
 
-/* NAVBAR */
-header {
-  position: fixed;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 40px;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background: radial-gradient(circle at top,#1a1f2e,#05070d);
+  color:#fff;
 }
 
-header h1 {
-  color: orange;
+/* NAV */
+header{
+  position:fixed;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(12px);
+  z-index:1000;
 }
 
-nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: white;
-  position: relative;
-  transition: 0.3s;
+header h1{
+  color:var(--primary);
+  font-weight:800;
 }
 
-nav a::after {
-  content: '';
-  width: 0%;
-  height: 2px;
-  background: orange;
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  transition: 0.3s;
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:500;
+  position:relative;
 }
 
-nav a:hover::after {
-  width: 100%;
+nav a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background:var(--primary);
+  transition:.3s;
 }
+
+nav a:hover::after{width:100%}
 
 /* HERO */
-.hero {
-  height: 100vh;
-  background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.3)),
-              url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  padding: 60px;
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  padding:60px;
+  background:linear-gradient(to right,rgba(0,0,0,.85),rgba(0,0,0,.3)),url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+  background-size:cover;
 }
 
-.hero h2 {
-  font-size: 60px;
+.hero h2{
+  font-size:64px;
+  margin:0;
 }
 
-.hero p {
-  font-size: 20px;
-  margin-bottom: 20px;
+.hero p{
+  font-size:20px;
+  opacity:.8;
 }
 
-/* BOTÃO PRO */
-.btn {
-  padding: 14px 30px;
-  background: linear-gradient(45deg, orange, red);
-  border-radius: 30px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:14px 32px;
+  border-radius:30px;
+  background:linear-gradient(45deg,var(--primary),red);
+  text-decoration:none;
+  color:#fff;
+  font-weight:600;
+  transition:.3s;
 }
 
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px orange;
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px var(--primary);
 }
 
-/* SEÇÕES */
-.section {
-  padding: 80px 40px;
+.section{
+  padding:100px 40px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.section h2{
+  font-size:32px;
+  margin-bottom:30px;
 }
 
 /* PLAYER */
-.video-container {
-  max-width: 900px;
-  margin: auto;
+.video-container video{
+  width:100%;
+  border-radius:15px;
+  box-shadow:0 10px 40px rgba(0,0,0,.6);
 }
 
-/* CARDS PROGRAMAS */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+/* PROGRAMAS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;
 }
 
-.card {
-  background: #111522;
-  padding: 20px;
-  border-radius: 15px;
-  transition: 0.3s;
-  cursor: pointer;
+.card{
+  background:var(--card);
+  padding:25px;
+  border-radius:16px;
+  transition:.3s;
+  position:relative;
+  overflow:hidden;
 }
 
-.card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 10px 30px rgba(255,140,0,0.4);
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(255,122,0,.4),transparent);
+  opacity:0;
+  transition:.4s;
 }
 
-/* ANIMAÇÃO */
-.fade {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1s;
+.card:hover::before{opacity:1}
+
+.card:hover{
+  transform:translateY(-10px);
 }
 
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
+/* GRID EXTRA */
+.grid-info{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.info-box{
+  background:var(--card);
+  padding:25px;
+  border-radius:12px;
 }
 
 /* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  background: black;
+footer{
+  background:#000;
+  padding:40px;
+  text-align:center;
+  margin-top:60px;
 }
 
-</style>
-</head>
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
 
-<body>
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
 
-<header>
+</style></head><body><header>
   <h1>TV Natal</h1>
   <nav>
     <a href="#home">Início</a>
     <a href="#ao-vivo">Ao Vivo</a>
     <a href="#programas">Programas</a>
+    <a href="#grade">Grade de TV</a>
+    <a href="#sobre">Sobre</a>
   </nav>
-</header>
-
-<section class="hero" id="home">
+</header><section class="hero" id="home">
   <div>
     <h2>TV Natal</h2>
     <p>A sua conexão com o Rio Grande do Norte</p>
-    <a href="#ao-vivo" class="btn">ASSISTA AO VIVO</a>
+    <a href="#ao-vivo" class="btn">Assistir ao vivo</a>
   </div>
-</section>
-
-<section class="section fade" id="ao-vivo">
-  <h2>🔴 Ao Vivo</h2>
+</section><section class="section fade" id="ao-vivo">
+  <h2>🔴 Transmissão ao Vivo</h2>
   <div class="video-container">
     <video id="video" controls autoplay></video>
   </div>
-</section>
-
-<section class="section fade" id="programas">
-  <h2>📺 Programas</h2>
+</section><section class="section fade" id="programas">
+  <h2>📺 Programação</h2>
   <div class="cards">
-    <div class="card" onclick="abrirPrograma('TV Natal Manhã')">TV Natal Manhã</div>
-    <div class="card" onclick="abrirPrograma('Programa KaikeFlex')">Programa KaikeFlex</div>
-    <div class="card" onclick="abrirPrograma('Natal Kids')">Natal Kids</div>
-    <div class="card" onclick="abrirPrograma('TVSéries')">TVSéries</div>
-    <div class="card" onclick="abrirPrograma('Jornal do Natal')">Jornal do Natal</div>
-    <div class="card" onclick="abrirPrograma('Alô Potiguar')">Alô Potiguar</div>
-    <div class="card" onclick="abrirPrograma('Via Legal')">Via Legal</div>
-    <div class="card" onclick="abrirPrograma('HistóriaTV')">HistóriaTV</div>
-    <div class="card" onclick="abrirPrograma('Natal Esporte')">Natal Esporte</div>
-    <div class="card" onclick="abrirPrograma('Educação em Revista')">Educação em Revista</div>
-    <div class="card" onclick="abrirPrograma('A Terra Prometida')">A Terra Prometida</div>
+    <div class="card">TV Natal Manhã</div>
+    <div class="card">Programa KaikeFlex</div>
+    <div class="card">Natal Kids</div>
+    <div class="card">TV Séries</div>
+    <div class="card">Jornal do Natal</div>
+    <div class="card">Alô Potiguar</div>
+    <div class="card">Via Legal</div>
+    <div class="card">HistóriaTV</div>
+    <div class="card">Natal Esporte</div>
+    <div class="card">Educação em Revista</div>
+    <div class="card">A Terra Prometida</div>
   </div>
-</section>
-
-<footer>
-  © 2026 TV Natal - Afiliada a National
-</footer>
-
-<script>
-// HLS PLAYER
+</section><section class="section fade" id="sobre">
+  <h2>Sobre a TV Natal</h2>
+  <div class="grid-info">
+    <div class="info-box">
+      <h3>Missão</h3>
+      <p>Levar informação, entretenimento e cultura para todo o Rio Grande do Norte.</p>
+    </div>
+    <div class="info-box">
+      <h3>Visão</h3>
+      <p>Ser referência em comunicação regional com qualidade e inovação.</p>
+    </div>
+    <div class="info-box">
+      <h3>Valores</h3>
+      <p>Compromisso, verdade, inovação e proximidade com o público.</p>
+    </div>
+  </div>
+</section><footer>
+  <p>© 2026 TV Natal • Todos os direitos reservados</p>
+</footer><script>
 const video = document.getElementById('video');
-const videoSrc = "tvnatal-rn.m3u8";
+const src = "tvnatal-rn.m3u8";
 
-if(Hls.isSupported()) {
+if(Hls.isSupported()){
   const hls = new Hls();
-  hls.loadSource(videoSrc);
+  hls.loadSource(src);
   hls.attachMedia(video);
 }
 
-// ANIMAÇÃO AO SCROLL
+// SCROLL ANIMATION
 const faders = document.querySelectorAll('.fade');
 
-window.addEventListener('scroll', () => {
-  faders.forEach(el => {
+window.addEventListener('scroll',()=>{
+  faders.forEach(el=>{
     const top = el.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100) {
+    if(top < window.innerHeight - 100){
       el.classList.add('show');
     }
   });
 });
-</script>
-
-</body>
+</script></body>
 </html>
